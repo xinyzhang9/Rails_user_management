@@ -1,0 +1,26 @@
+<div>
+	<table>
+		<tr>
+			<th>First Name</th>
+			<th>Last Name</th>
+			<th>Email</th>
+			<th>Actions</th>
+		</tr>
+		<%@users.each do |user|%>
+			<tr>
+				<td><%=user.first_name%></td>
+				<td><%=user.last_name%></td>
+				<td><%=user.email_address%></td>
+				<td><a href="/users/<%=user.id%>">show</a> | <a href="/users/<%=user.id%>/edit">edit</a> | 
+					<form action="/users/<%=user.id%>" method = 'post'>
+						<input name="authenticity_token" value="<%= form_authenticity_token %>" type="hidden">
+						<input type="hidden" name = '_method' value = 'delete'>
+						<input type="submit" value = 'Destroy'>
+					</form>
+				</td>
+			</tr>
+		<%end%>
+	</table>
+	<hr>
+	<a href="/users/new">new user</a>
+</div>
